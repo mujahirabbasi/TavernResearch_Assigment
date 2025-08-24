@@ -1,6 +1,6 @@
 # 🏛️ Tavern Research Assignment: RCT + LLM Persuasion Analysis
 
-![Results Analysis](rests_analasy.jpg)
+![Results Analysis](results_analysis.jpg)
 
 ## 📋 Project Overview
 
@@ -201,11 +201,7 @@ These case studies make the finding intuitive and memorable: **videos with large
    - **Survey preferences** don't align with real-world effectiveness
    - **Energy/environmental messaging** may be a hidden opportunity
 
-4. **💼 **Why This Matters for Tavern Research**:
-   - **Campaign Testing**: MaxDiff surveys can be misleading for message optimization
-   - **Resource Allocation**: Focus on RCT-based testing for reliable results
-   - **Message Optimization**: Use experimental validation, not just preference surveys
-   - **Strategic Planning**: Understand the gap between perception and reality
+
 
 ## 🎨 Visualizations
 
@@ -229,59 +225,6 @@ The script generates comprehensive plots:
 - **Speed**: No network latency
 - **Flexibility**: Choose any Ollama model
 
-## 🔧 Customization
-
-### Change Batch Size
-```python
-features_df = process_all_transcripts_batched(df, batch_size=10)  # Faster processing
-```
-
-### Use Different LLM Model
-```python
-features_df = process_all_transcripts_batched(df, model="mistral:7b")
-```
-
-### Adjust Feature Categories
-Modify `expected_categories` in the script to change classification options.
-
-## 📈 Research Applications
-
-This analysis framework can be applied to:
-- **Political Campaigns**: Message optimization and testing
-- **Marketing Research**: Survey vs. experimental validation
-- **Social Science**: Methodological comparisons
-- **Policy Communication**: Effective messaging strategies
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 👨‍💻 Author
-
-**Mujahirabbasi** - [GitHub Profile](https://github.com/mujahirabbasi)
-
-## 🙏 Acknowledgments
-
-- **Tavern Research** for the research assignment
-- **Ollama** for local LLM processing capabilities
-- **Open Source Community** for the statistical and ML libraries
-
-## 📞 Contact
-
-For questions or collaboration:
-- **GitHub**: [mujahirabbasi](https://github.com/mujahirabbasi)
-- **Repository**: [TavernResearch_Assigment](https://github.com/mujahirabbasi/TavernResearch_Assigment)
-
 ---
-
-⭐ **Star this repository if you find it helpful!**
 
 🔬 **Research-driven insights for political persuasion and messaging effectiveness.**
