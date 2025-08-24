@@ -163,6 +163,44 @@ print("Feature columns:", features_df.columns.tolist())
 print("\nFirst few feature sets:")
 print(features_df.head())
 
+# Clean and validate features
+print("\n🧹 Cleaning and validating features...")
+
+# Define expected categories
+expected_categories = {
+    'topic': ['economy', 'healthcare', 'immigration', 'energy', 'democracy', 'other'],
+    'tone': ['positive', 'negative', 'neutral'],
+    'target': ['Trump', 'Biden', 'Both', 'Neither'],
+    'style': ['emotional', 'factual', 'personal_story', 'slogan']
+}
+
+# Clean each feature column
+for col, expected_values in expected_categories.items():
+    if col in features_df.columns:
+        # Convert to string and clean
+        features_df[col] = features_df[col].astype(str).str.strip().str.lower()
+        
+        # Replace invalid values with 'other' or default
+        invalid_mask = ~features_df[col].isin([v.lower() for v in expected_values])
+        if col == 'topic':
+            features_df.loc[invalid_mask, col] = 'other'
+        elif col == 'tone':
+            features_df.loc[invalid_mask, col] = 'neutral'
+        elif col == 'target':
+            features_df.loc[invalid_mask, col] = 'Neither'
+        elif col == 'style':
+            features_df.loc[invalid_mask, col] = 'factual'
+        
+        print(f"   {col}: {features_df[col].value_counts().to_dict()}")
+
+# Ensure video_id is numeric
+features_df['video_id'] = pd.to_numeric(features_df['video_id'], errors='coerce')
+
+# Check for any remaining issues
+print(f"\n✅ Features cleaned. Final shape: {features_df.shape}")
+print("Feature data types:")
+print(features_df.dtypes)
+
 # Merge features back into main dataframe
 df_full = pd.merge(df, features_df, on="video_id")
 print("Dataframe with features:")
@@ -191,10 +229,21 @@ print(df_full[["video_id", "treatment_effect", "maxdiff_mean", "topic", "tone", 
 # ============================================
 
 # Prepare features for both models
+print("\n🔍 Preparing feature matrix...")
 X = pd.get_dummies(df_full[["topic","tone","target","style"]], drop_first=True)
 print(f"Feature matrix shape: {X.shape}")
 print("Features included:")
 print(X.columns.tolist())
+
+# Debug: Check data types and values
+print(f"\n📊 Feature matrix info:")
+print(f"X data types: {X.dtypes.unique()}")
+print(f"X has any object dtypes: {(X.dtypes == 'object').any()}")
+print(f"X has any null values: {X.isnull().any().any()}")
+
+# Ensure all features are numeric
+X = X.astype(float)
+print(f"✅ X converted to float. Shape: {X.shape}")
 
 # Model 1: RCT (Treatment Effects)
 print("\n" + "="*50)
