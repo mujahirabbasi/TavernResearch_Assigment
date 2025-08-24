@@ -2,6 +2,8 @@
 
 ![Results Analysis](results_analysis.jpg)
 
+*Figure 1: Comprehensive visualization of RCT vs. MaxDiff analysis results, showing treatment effects, survey scores, correlation patterns, and feature coefficient comparisons across 127 political campaign videos.*
+
 ## 📋 Project Overview
 
 This repository contains a comprehensive analysis of political campaign message effectiveness using **Randomized Controlled Trials (RCT)** and **Large Language Models (LLM)**. The project compares experimental treatment effects with survey-based MaxDiff responses to uncover insights about what messaging strategies actually work versus what people say works.
