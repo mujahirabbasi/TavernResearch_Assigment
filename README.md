@@ -12,6 +12,27 @@ This repository contains a comprehensive analysis of political campaign message 
 
 This analysis reveals the gap between stated preferences and real-world effectiveness of political campaign messages.
 
+## 🔬 **Methodology: Fair Comparison Design**
+
+### **Same Feature Space for Both Models**
+- **Features extracted from transcripts with LLM**: topic, tone, target, style
+- **Two models trained on identical inputs**:
+  - **Model 1**: Predicts RCT treatment effects
+  - **Model 2**: Predicts MaxDiff survey scores
+- ✅ **Ensures fairness**—directly comparable because they're built on the same feature inputs
+
+### **Treatment Effect Definition**
+The core persuasion metric is the **causal effect** of exposure to a video:
+
+\[
+\text{Treatment Effect} = P(\text{approval} \mid \text{treated}) - P(\text{approval} \mid \text{control})
+\]
+
+Where:
+- **P(approval | treated)**: Probability of Trump approval after watching a video
+- **P(approval | control)**: Baseline approval rate in control group
+- **Treatment Effect**: The causal persuasion impact of each video message
+
 ## 🚀 Key Features
 
 ### 🔬 **Dual Analysis Approach**
@@ -135,6 +156,12 @@ python rct_llm_analysis.py
 - **MaxDiff Model**: Explains **21.8%** of variance in survey responses
 - **Implication**: People's survey responses are **7x more predictable** than actual persuasion effects
 
+#### 📊 **Correlation Between RCT and MaxDiff**
+- **Main Finding**: **Negative correlation (-0.237)**
+- **Interpretation**: What people say persuades them ≠ What actually changes minds
+- **Statistical Significance**: This negative relationship is statistically significant
+- **Implication**: Survey preferences are inversely related to real-world effectiveness
+
 #### 🎭 **Feature Effectiveness Mismatches**
 
 | Feature | RCT Effect | MaxDiff Effect | Difference | Insight |
@@ -148,6 +175,15 @@ python rct_llm_analysis.py
 - **MaxDiff Model**: Only constant term is significant
 - **Interpretation**: Real-world persuasion is highly unpredictable, while survey responses follow more predictable patterns
 
+### **Concrete Examples of Mismatches**
+
+#### 🎬 **Case Studies: High RCT, Low MaxDiff**
+- **Video 12**: +16.6% RCT effect, MaxDiff score = 0.37
+- **Video 18**: +16.0% RCT effect, MaxDiff score = 0.40  
+- **Video 25**: +15.1% RCT effect, MaxDiff score = 0.42
+
+These case studies make the finding intuitive and memorable: **videos with large positive effects in RCTs often have poor MaxDiff survey scores**.
+
 ### **Strategic Implications**
 
 1. **🎯 Campaign Strategy**: 
@@ -156,14 +192,20 @@ python rct_llm_analysis.py
    - **Factual style** is overrated in surveys vs. reality
 
 2. **📊 Research Methodology**:
-   - **MaxDiff surveys** are poor predictors of actual persuasion effects
-   - **RCTs** reveal complex, unpredictable real-world dynamics
+   - **MaxDiff surveys** are poor predictors of actual persuasion effects (only ~5.5% variance explained)
+   - **RCTs are gold standard**—essential for reliable persuasion testing
    - **Feature-based models** explain very little variance in actual persuasion
 
 3. **🏛️ Political Communication**:
    - **Topic matters more than style** for actual persuasion
    - **Survey preferences** don't align with real-world effectiveness
    - **Energy/environmental messaging** may be a hidden opportunity
+
+4. **💼 **Why This Matters for Tavern Research**:
+   - **Campaign Testing**: MaxDiff surveys can be misleading for message optimization
+   - **Resource Allocation**: Focus on RCT-based testing for reliable results
+   - **Message Optimization**: Use experimental validation, not just preference surveys
+   - **Strategic Planning**: Understand the gap between perception and reality
 
 ## 🎨 Visualizations
 
